@@ -1,0 +1,84 @@
+
+<h1>Transferencia</h1>
+
+<h2>Create User</h2>
+
+<table>
+  <tr>
+    <th>Codigo</th>
+    <td><input type="number" name="" id="" #codigo></td>
+  </tr>
+  <tr>
+    <th>Nome: </th>
+    <td><input type="text" #nomeuser></td>
+  </tr>
+  <tr>
+    <th>CNPJ: </th>
+    <td><input type="text" #cnpjuser></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button (click)='cadastrar_cliente(nomeuser.value, cnpjuser.value, codigo.value)'>Cadastrar</button>
+    </td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+<h2>Nova Transferencia</h2>
+
+<table>
+  <tr><th>Nome Pagador</th>
+  <td><select name="" id="" #usuarioid>
+    <ng-container *ngFor="let item of lista_clientes; let i=index">
+      <option [value]="item['nome']">{{ item['nome'] }}</option>
+    </ng-container>
+  </select></td></tr>
+  <tr><th>Banco Pagador</th>
+    <td><input type="text" #bancopag></td></tr>
+  <tr><th>Agencia Pagador</th>
+    <td><input type="text" #agenciapag></td></tr>
+  <tr><th>Conta Pagador</th>
+    <td><input type="text" #contapag></td></tr>
+  <tr><th>Nome Beneficiario</th>
+    <td><input type="text" #nomebene></td></tr>
+  <tr><th>Banco Beneficiario</th>
+    <td><input type="text" #bancobene></td></tr>
+  <tr><th>Agencia Beneficiario</th>
+    <td><input type="text" #agenciabene></td></tr>
+  <tr><th>Conta Beneficiario</th>
+    <td><input type="text" #contabene></td></tr>
+  <tr><th>Valor</th>
+    <td><input type="number" #valor></td></tr>
+  <tr>
+    <td colspan="2">
+      <button (click)="nova_transferencia(
+        usuarioid.value, bancopag.value, agenciapag.value, contapag.value, nomebene.value, bancobene.value, agenciabene.value, contabene.value, valor.value
+      )">Nova Transferência</button>
+    </td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+<h2>Listagem Transferencias</h2>
+
+<table border="1" style="text-align: center;">
+  <tr style="padding: 5px;">
+    <ng-container *ngFor="let column of colunas">
+      <th>{{ column }}</th>
+    </ng-container>
+  </tr>
+  <tr style="padding: 5px;" *ngFor='let itemTrans of itemsTransferencias; let i=index'>
+    <ng-container *ngFor="let coll of colunas; let x=index">
+      
+        <td>{{ itemTrans[coll] }}</td>
+        <td *ngIf="x == 11" (click)="deletar(itemTrans['_id']['$oid'])"><button>Excluir</button></td>
+        
+    </ng-container>
+    
+  
+</tr>
+</table>
